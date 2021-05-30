@@ -5,7 +5,7 @@
 }
 .wrapperDiv{
     margin: 2% 5%;
-    height: 90vh;
+    height: 80vh;
 }
 .clickToAction{
     height: 10%;
@@ -24,7 +24,7 @@
     text-align: right;
 }
 .customerList{
-    height: 80%;
+    height: 70%;
     overflow: auto;
 }
 .customerDiv div{
@@ -54,4 +54,13 @@
     padding: 2%;
     border: 1px solid grey;
     border-radius: 5px;
+}
+
+.pagination{
+    text-align: center;
+    height: 10%;
+    margin-top: 3%;
+}
+.pagination button{
+    padding: 1.5%;
 }

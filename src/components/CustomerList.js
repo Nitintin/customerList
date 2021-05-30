@@ -1,13 +1,17 @@
 import React,{useContext,useState} from 'react';
 import {CustomerContext} from './CustomerContext';
+import Pagination from './Pagination';
 
 const CustomerList = () => {
-    const [customerAPI, setcustomerAPI,isLoading] = useContext(CustomerContext);
+    const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage] = useContext(CustomerContext);
     const [defaultBid,setdefaultBid]=useState("max");
+    const indexOfLastCustomer = currentPage*customerPerPage;
+    const indexOfFirstCustomer = indexOfLastCustomer-customerPerPage;
+    const currentCustomer = customerAPI.slice(indexOfFirstCustomer,indexOfLastCustomer);
 
     const displayCustomer=()=>{
         if(!isLoading){
-            return customerAPI.map(item=>{
+            return currentCustomer.map(item=>{
                 return(
                     <div className="customerDiv" key={item.id}>
                         <div className="customerAvtar">
@@ -30,20 +34,24 @@ const CustomerList = () => {
     }
 
     const showBid = (bidArray)=>{
-        let bids=[];
-        bidArray.forEach(eachBid => {
-            bids.push(eachBid.amount);
-        });
-
-        if(defaultBid==="max"){
-            return(
-                <div>Maximum Bid = {Math.max(...bids)!== -Infinity ? Math.max(...bids) : "NA"}</div>
-            );
-        }else{
-            return(
-                <div>Minimum Bid = {Math.max(...bids)!== -Infinity ? Math.min(...bids) : "NA"}</div>
-            );
+        
+        if(bidArray){
+            let bids=[];
+            bidArray.forEach(eachBid => {
+                bids.push(eachBid.amount);
+            });
+    
+            if(defaultBid==="max"){
+                return(
+                    <div>Maximum Bid = {Math.max(...bids)!== -Infinity ? Math.max(...bids) : "NA"}</div>
+                );
+            }else{
+                return(
+                    <div>Minimum Bid = {Math.max(...bids)!== -Infinity ? Math.min(...bids) : "NA"}</div>
+                );
+            }
         }
+        
     }
 
     const toggleDefaultBid = () => {
@@ -66,6 +74,9 @@ const CustomerList = () => {
             </div>
             <div className="customerList">
                 {displayCustomer()}
+            </div>
+            <div className="pagination">
+                <Pagination/>
             </div>
         </div>
     )
