@@ -6,6 +6,7 @@ export const CustomerContext = createContext();
 export const CustomerProvider = props => {
     const [customerAPI, setcustomerAPI] = useState([]);
     const [isLoading,setisLoading]= useState(true);
+    const [defaultBid,setdefaultBid]=useState("max");
     const [customerPerPage,setcustomerPerPage] = useState(3);
     const [currentPage,setcurrentPage] = useState(1);
 
@@ -19,7 +20,7 @@ export const CustomerProvider = props => {
     },[])
 
     return (
-        <CustomerContext.Provider value={[customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage]}>
+        <CustomerContext.Provider value={[customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage,defaultBid,setdefaultBid]}>
             {props.children}
         </CustomerContext.Provider>
     )

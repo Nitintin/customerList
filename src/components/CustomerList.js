@@ -2,69 +2,47 @@ import React,{useContext,useState} from 'react';
 import {CustomerContext} from './CustomerContext';
 import Pagination from './Pagination';
 import {Link} from 'react-router-dom';
+import List from './List';
 
 const CustomerList = () => {
-    const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage] = useContext(CustomerContext);
-    const [defaultBid,setdefaultBid]=useState("max");
-    const indexOfLastCustomer = currentPage*customerPerPage;
-    const indexOfFirstCustomer = indexOfLastCustomer-customerPerPage;
-    const currentCustomer = customerAPI.slice(indexOfFirstCustomer,indexOfLastCustomer);
+    const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage,defaultBid,setdefaultBid] = useContext(CustomerContext);
 
-    const displayCustomer=()=>{
-        if(!isLoading){
-            return currentCustomer.map(item=>{
-                return(
-                    <Link to={"customer/"+item.id}>
-                        <div className="customerDiv" key={item.id}>
-                            <div className="customerAvtar">
-                                <img src={item.avatarUrl} alt="avtar"/>
-                            </div>
-                            <div className="customerDetail">
-                                <label>Customer - </label>{item.firstname? item.firstname +" "+item.lastname : "invalid data in JSON"}<br/>
-                                <label>Email - </label>{item.email? item.email : "invalid data in JSON"}<br/>
-                                <label>Phone - </label>{item.phone? item.phone : "invalid data in JSON"}<br/>
-                            </div>
-                            <div className="customerBid">
-                                {showBid(item.bids)}
-                                <br/>
-                                
-                                {"(Click to see all bids)"}
-                            </div>
-                        </div>
-                    </Link>
-                )
-            })
-        }else{
-            return("Fetching data....")
-        }
-    }
-
-    const showBid = (bidArray)=>{
-        
+    const getBidData = (bidArray,key)=>{ 
         if(bidArray){
             let bids=[];
             bidArray.forEach(eachBid => {
                 bids.push(eachBid.amount);
             });
     
-            if(defaultBid==="max"){
-                return(
-                    <div>Maximum Bid = {Math.max(...bids)!== -Infinity ? Math.max(...bids) : "NA"}</div>
-                );
+            if(key==="max"){
+                return(Math.max(...bids)!== -Infinity ? Math.max(...bids) : "NA");
             }else{
-                return(
-                    <div>Minimum Bid = {Math.max(...bids)!== -Infinity ? Math.min(...bids) : "NA"}</div>
-                );
+                return(Math.max(...bids)!== -Infinity ? Math.min(...bids) : "NA");
             }
+        }else{
+            return("invalid data")
         }
-        
     }
 
     const toggleDefaultBid = () => {
         defaultBid==="max" ? setdefaultBid("min") : setdefaultBid("max");
     }
 
-
+    const updatedCustomer = () =>{
+        return(
+            customerAPI.map(item=>{
+                const max_val = getBidData(item.bids,"max");
+                const min_val = getBidData(item.bids,"min");
+                return(
+                    {...item,
+                    max:max_val,
+                    min:min_val
+                    }
+                );
+            })
+        )
+    }
+    
     return (
         <div className="wrapperDiv">
             <div className="clickToAction">
@@ -79,7 +57,7 @@ const CustomerList = () => {
                 </div>
             </div>
             <div className="customerList">
-                {displayCustomer()}
+                <List UpdatedCostumer={updatedCustomer()} />
             </div>
             <div className="pagination">
                 <Pagination/>
