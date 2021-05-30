@@ -1,14 +1,14 @@
-.header {
+header {
     border: 1px solid #000;
     height: 10vh;
     min-height: 70px;
 }
 .wrapperDiv{
     margin: 2% 5%;
-    height: 80vh;
+    height: 75vh;
 }
 .clickToAction{
-    height: 10%;
+    height: 5%;
 }
 .clickToAction div{
     display: inline-block;
@@ -50,10 +50,12 @@
         height: 50px;
     }
   }
-.customerList .customerDiv{
+.customerDiv{
     padding: 2%;
     border: 1px solid grey;
     border-radius: 5px;
+    margin-top: 1.5%;
+    transition: 0.5s;
 }
 
 .pagination{
@@ -62,5 +64,37 @@
     margin-top: 3%;
 }
 .pagination button{
-    padding: 1.5%;
+    padding: 1%;
+    margin-right: 1%;
+}
+.customerBid div{
+    margin-bottom: 5%;
+}
+a{
+    color: black;
+}
+a:visited{
+    color: black;
+    text-decoration: none;
+}
+footer{
+    height: 15vh;
+    background-color: grey;
+    position: fixed;
+    width: 100%;
+    display: block;
+    color: #fff;
+    text-align: center;
+}
+.customerBidList{
+    width: 33.33%;
+    text-align: center;
+}
+
+.customerDiv:hover{
+    background-color: aliceblue;
+    transition: 0.5s;
+}
+label{
+    font-weight: 500;
 }

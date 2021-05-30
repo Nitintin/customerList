@@ -1,9 +1,38 @@
-import React from 'react'
+import React,{useContext} from 'react';
+import {CustomerContext} from './CustomerContext';
 
-const CustomerBid = () => {
+
+const CustomerBid = ({match}) => {
+    const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage] = useContext(CustomerContext);
+
+    const fetchAllBids = () => {
+        if(!isLoading){
+            const customerID = match.url.split("/")[2];
+            const selectedUserDetails = customerAPI.filter(item => item.id === customerID)[0];
+            return(selectedUserDetails.bids.map(item => {
+                return(
+                    <div className="customerDiv" key={item.id}>
+                        <div className="customerBidList">
+                            <label>Txn Amount - </label>{item.amount}
+                        </div>
+                        <div className="customerBidList">
+                            <label>Txn For - </label>{item.carTitle}
+                        </div>
+                        <div className="customerBidList">
+                            <label>Txn Date - </label>
+                            {Date(item.created).split("GMT")[0]}
+                        </div>
+                    </div>
+                )
+            }));
+        }else{
+            return(<div>Details are being fetched</div>)
+        }
+
+    }
     return (
-        <div>
-            Individual Customer Bids
+        <div className="wrapperDiv">
+            {fetchAllBids()}
         </div>
     )
 }

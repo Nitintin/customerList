@@ -1,6 +1,7 @@
 import React,{useContext,useState} from 'react';
 import {CustomerContext} from './CustomerContext';
 import Pagination from './Pagination';
+import {Link} from 'react-router-dom';
 
 const CustomerList = () => {
     const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage] = useContext(CustomerContext);
@@ -13,19 +14,24 @@ const CustomerList = () => {
         if(!isLoading){
             return currentCustomer.map(item=>{
                 return(
-                    <div className="customerDiv" key={item.id}>
-                        <div className="customerAvtar">
-                            <img src={item.avatarUrl} alt="avtar"/>
+                    <Link to={"customer/"+item.id}>
+                        <div className="customerDiv" key={item.id}>
+                            <div className="customerAvtar">
+                                <img src={item.avatarUrl} alt="avtar"/>
+                            </div>
+                            <div className="customerDetail">
+                                <label>Customer - </label>{item.firstname? item.firstname +" "+item.lastname : "invalid data in JSON"}<br/>
+                                <label>Email - </label>{item.email? item.email : "invalid data in JSON"}<br/>
+                                <label>Phone - </label>{item.phone? item.phone : "invalid data in JSON"}<br/>
+                            </div>
+                            <div className="customerBid">
+                                {showBid(item.bids)}
+                                <br/>
+                                
+                                {"(Click to see all bids)"}
+                            </div>
                         </div>
-                        <div className="customerDetail">
-                            <label>Customer - </label>{item.firstname} {item.lastname}<br/>
-                            <label>Email - </label>{item.email}<br/>
-                            <label>Phone - </label>{item.phone}<br/>
-                        </div>
-                        <div className="customerBid">
-                            {showBid(item.bids)}
-                        </div>
-                    </div>
+                    </Link>
                 )
             })
         }else{
