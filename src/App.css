@@ -7,6 +7,22 @@
     margin: 2% 5%;
     height: 90vh;
 }
+.clickToAction{
+    height: 10%;
+}
+.clickToAction div{
+    display: inline-block;
+}
+.otherCTA{
+    width: 60%;
+}
+.filterCTA{
+    width: 20%;
+}
+.defaultBidCTA{
+    width: 20%;
+    text-align: right;
+}
 .customerList{
     height: 80%;
     overflow: auto;
@@ -25,7 +41,15 @@
 }
 .customerAvtar img{
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
 } 
+@media only screen and (max-width: 600px) {
+    .customerAvtar img {
+        width: 50px;
+        height: 50px;
+    }
+  }
 .customerList .customerDiv{
     padding: 2%;
     border: 1px solid grey;

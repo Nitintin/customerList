@@ -1,8 +1,9 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import {CustomerContext} from './CustomerContext';
 
 const CustomerList = () => {
     const [customerAPI, setcustomerAPI,isLoading] = useContext(CustomerContext);
+    const [defaultBid,setdefaultBid]=useState("max");
 
     const displayCustomer=()=>{
         if(!isLoading){
@@ -10,7 +11,7 @@ const CustomerList = () => {
                 return(
                     <div className="customerDiv" key={item.id}>
                         <div className="customerAvtar">
-                            <img src={item.avatarUrl} width="100" height="100" alt="avtar"/>
+                            <img src={item.avatarUrl} alt="avtar"/>
                         </div>
                         <div className="customerDetail">
                             <label>Customer - </label>{item.firstname} {item.lastname}<br/>
@@ -18,39 +19,51 @@ const CustomerList = () => {
                             <label>Phone - </label>{item.phone}<br/>
                         </div>
                         <div className="customerBid">
-                            {getMaxBid(item.bids)}
+                            {showBid(item.bids)}
                         </div>
                     </div>
                 )
             })
         }else{
-            return("Loading")
+            return("Fetching data....")
         }
     }
 
-    const getMaxBid = (bidArray) =>{
+    const showBid = (bidArray)=>{
         let bids=[];
         bidArray.forEach(eachBid => {
             bids.push(eachBid.amount);
         });
-        return(
-            <div>Maximum Bid = {Math.max(...bids)}</div>
-        );
+
+        if(defaultBid==="max"){
+            return(
+                <div>Maximum Bid = {Math.max(...bids)!== -Infinity ? Math.max(...bids) : "NA"}</div>
+            );
+        }else{
+            return(
+                <div>Minimum Bid = {Math.max(...bids)!== -Infinity ? Math.min(...bids) : "NA"}</div>
+            );
+        }
     }
 
-    const getMinBid = (bidArray) => {
-        let bids=[];
-        bidArray.forEach(eachBid => {
-            bids.push(eachBid.amount);
-        });
-        return(
-            <div>Minimum Bid = {Math.min(...bids)}</div>
-        );
+    const toggleDefaultBid = () => {
+        defaultBid==="max" ? setdefaultBid("min") : setdefaultBid("max");
     }
 
 
     return (
         <div className="wrapperDiv">
+            <div className="clickToAction">
+                <div className="otherCTA">
+
+                </div>
+                <div className="filterCTA">
+                    
+                </div>
+                <div className="defaultBidCTA">
+                    <button onClick={()=>toggleDefaultBid()}>Show {defaultBid==="max"? "min" : "max" } bid</button>
+                </div>
+            </div>
             <div className="customerList">
                 {displayCustomer()}
             </div>
