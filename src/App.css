@@ -29,6 +29,7 @@ header {
 }
 .customerDiv div{
     display: inline-block;
+    text-align: center;
 }
 .customerAvtar{
     width: 20%;
@@ -56,6 +57,7 @@ header {
     border-radius: 5px;
     margin-top: 1.5%;
     transition: 0.5s;
+    background-color: #f4f1eab0;
 }
 
 .pagination{
@@ -97,4 +99,11 @@ footer{
 }
 label{
     font-weight: 500;
+}
+.defaultBidCTA button{
+    padding: 2%;
+}
+
+.filterCTA .sortDropdown{
+    padding: 2%;
 }

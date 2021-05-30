@@ -6,6 +6,7 @@ import List from './List';
 
 const CustomerList = () => {
     const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage,defaultBid,setdefaultBid] = useContext(CustomerContext);
+    const [sort,setSort] = useState(0);
 
     const getBidData = (bidArray,key)=>{ 
         if(bidArray){
@@ -29,20 +30,18 @@ const CustomerList = () => {
     }
 
     const updatedCustomer = () =>{
-        return(
-            customerAPI.map(item=>{
-                const max_val = getBidData(item.bids,"max");
-                const min_val = getBidData(item.bids,"min");
-                return(
-                    {...item,
-                    max:max_val,
-                    min:min_val
-                    }
-                );
-            })
-        )
+        return(customerAPI.map(item=>{
+            const max_val = getBidData(item.bids,"max");
+            const min_val = getBidData(item.bids,"min");
+            return(
+                {...item,
+                max:max_val,
+                min:min_val
+                }
+            );
+        }));
     }
-    
+
     return (
         <div className="wrapperDiv">
             <div className="clickToAction">
@@ -50,14 +49,18 @@ const CustomerList = () => {
 
                 </div>
                 <div className="filterCTA">
-                    
+                    <select name="sortDropdown" onChange={(e)=>setSort(parseInt(e.target.value))} >
+                        <option value="0">Sort By...</option>
+                        <option value="1">Asc Order</option>
+                        <option value="2">Desc Order</option>
+                    </select>
                 </div>
                 <div className="defaultBidCTA">
                     <button onClick={()=>toggleDefaultBid()}>Show {defaultBid==="max"? "min" : "max" } bid</button>
                 </div>
             </div>
             <div className="customerList">
-                <List UpdatedCostumer={updatedCustomer()} />
+                <List UpdatedCustomer= {updatedCustomer()} sort={sort}/>
             </div>
             <div className="pagination">
                 <Pagination/>

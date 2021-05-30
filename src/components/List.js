@@ -2,11 +2,19 @@ import React,{useContext} from 'react';
 import {CustomerContext} from './CustomerContext';
 import {Link} from 'react-router-dom';
 
-const List = ({UpdatedCostumer}) => {
+const List = ({UpdatedCustomer,sort}) => {
     const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage,defaultBid,setdefaultBid] = useContext(CustomerContext);
     const indexOfLastCustomer = currentPage*customerPerPage;
     const indexOfFirstCustomer = indexOfLastCustomer-customerPerPage;
-    const currentCustomer = UpdatedCostumer.slice(indexOfFirstCustomer,indexOfLastCustomer);
+    let currentCustomer;
+    if(sort===0){
+        currentCustomer = UpdatedCustomer.slice(indexOfFirstCustomer,indexOfLastCustomer);
+    }
+    else if(sort===1){
+        currentCustomer = UpdatedCustomer.sort((a, b) => {return a[defaultBid] - b[defaultBid]}).slice(indexOfFirstCustomer,indexOfLastCustomer);
+    }else if(sort===2){
+        currentCustomer = UpdatedCustomer.sort((a, b) => {return b[defaultBid] - a[defaultBid]}).slice(indexOfFirstCustomer,indexOfLastCustomer);
+    }
 
     const displayList= () =>{
         if(!isLoading){
