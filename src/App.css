@@ -1,0 +1,33 @@
+.header {
+    border: 1px solid #000;
+    height: 10vh;
+    min-height: 70px;
+}
+.wrapperDiv{
+    margin: 2% 5%;
+    height: 90vh;
+}
+.customerList{
+    height: 80%;
+    overflow: auto;
+}
+.customerDiv div{
+    display: inline-block;
+}
+.customerAvtar{
+    width: 20%;
+}
+.customerDetail{
+    width: 60%;
+}
+.customerBid{
+    width: 20%;
+}
+.customerAvtar img{
+    border-radius: 50%;
+} 
+.customerList .customerDiv{
+    padding: 2%;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
