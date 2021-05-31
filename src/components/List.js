@@ -34,7 +34,7 @@ const List = ({UpdatedCustomer,sort}) => {
             return currentCustomer.map(item=>{
                 return(
                     <Paper elevation={3} >
-                        <Link to={"customer/"+item.id}>
+                        <Link to={"customer/"+item.id} target="_blank">
                             <div className="customerDiv" key={item.id}>
                                 <div className="customerAvtar">
                                     <img src={item.avatarUrl} alt="avtar"/>
