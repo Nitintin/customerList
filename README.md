@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# TRAVCLAN INTERVIEW TASK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was build using ReactJS. All the latest technologies like ContextAPI, Hooks, ES6 have been used in this project.
+
+
+# ASSUMPTIONS
+The only assumption that i made was to about the number of customers thats needs to be visible per page. As of now, only 3 customers are visible per page.
+
+# Live Link
+https://travclan-nitin.netlify.app/
+
+# MUST - HAVE Tasks
+There were four primary must have tasks that need to be completed in this assignment. Task one was to display a list of customers along with pagination. This has been completed succesfully and can be seen right from the index page. Task to was to display maximum bits by default and to have an option to toggle it to minimum bids. This has also been acieved succesfully. Button at the top write of the application can be used to toggle. Task three was to enable sorting. Sorting has been achieved based on Ascending order and descending order of the bid selected. Task four was to use ES6 and react hooks. the entire website has been built using these technologies only!
+
+# GOOD TO HAVE TASK
+First good to have task was to use context API. The same has been used effeciently to manage flow of data. The second good to have task allowed the user to click on any route in order to check list of entire bids placed by that particular customer. This has been achieved by using Routers.
+The only task which was not fulfilled was material-ui styling. Time constraint played a major role in this. If given more time, this can also be achieved!
+
 
 ## Available Scripts
 
