@@ -1,23 +1,19 @@
-header {
-    border: 1px solid #000;
-    height: 10vh;
-    min-height: 70px;
-}
 .wrapperDiv{
     margin: 2% 5%;
     height: 75vh;
 }
 .clickToAction{
-    height: 5%;
+    height: fit-content;
 }
 .clickToAction div{
-    display: inline-block;
+    display: inline-grid;
 }
 .otherCTA{
-    width: 60%;
+    width: 50%;
 }
-.filterCTA{
-    width: 20%;
+
+.wrapperDiv .clickToAction .filterCTA{
+    width: 30%;
 }
 .defaultBidCTA{
     width: 20%;
@@ -45,19 +41,13 @@ header {
     width: 100px;
     height: 100px;
 } 
-@media only screen and (max-width: 600px) {
-    .customerAvtar img {
-        width: 50px;
-        height: 50px;
-    }
-  }
 .customerDiv{
     padding: 2%;
     border: 1px solid grey;
     border-radius: 5px;
     margin-top: 1.5%;
     transition: 0.5s;
-    background-color: #f4f1eab0;
+    background-color: #fff;
 }
 
 .pagination{
@@ -79,14 +69,10 @@ a:visited{
     color: black;
     text-decoration: none;
 }
-footer{
-    height: 15vh;
-    background-color: grey;
-    position: fixed;
-    width: 100%;
-    display: block;
+
+.header a{
     color: #fff;
-    text-align: center;
+    text-decoration: none;
 }
 .customerBidList{
     width: 33.33%;
@@ -106,4 +92,14 @@ label{
 
 .filterCTA .sortDropdown{
     padding: 2%;
+}
+
+@media only screen and (max-width: 600px) {
+    .otherCTA{
+        width: 40%;
+    }
+    .customerAvtar img {
+        width: 50px;
+        height: 50px;
+    }
 }

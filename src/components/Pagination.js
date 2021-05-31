@@ -1,5 +1,6 @@
 import React,{useContext} from 'react';
 import {CustomerContext} from './CustomerContext';
+import Button from '@material-ui/core/Button';
 
 const Pagination = () => {
     const [customerAPI,setcustomerAPI,isLoading,customerPerPage,setcustomerPerPage,currentPage,setcurrentPage] = useContext(CustomerContext);
@@ -11,7 +12,7 @@ const Pagination = () => {
             paginationButton.push(i);
         }
 
-        return(paginationButton.map(item => <button key={item} onClick={()=>setcurrentPage(item)}>{item}</button>));
+        return(paginationButton.map(item => <Button variant="contained" color="primary" key={item} onClick={()=>setcurrentPage(item)}>{item}</Button>));
     }
 
     return (
