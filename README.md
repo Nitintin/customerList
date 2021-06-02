@@ -1,4 +1,4 @@
-# TRAVCLAN INTERVIEW TASK
+# TRAVCLAN 
 
 This project was build using ReactJS. All the latest technologies like ContextAPI, Hooks, ES6 have been used in this project.
 
